@@ -53,11 +53,11 @@ const Header = () => {
 
               <span className="favIcon">
                 <i class="ri-heart-line"></i>
-                <span className="badge">1</span>
+                <span className="badge">2</span>
               </span>
               <span className="cartIcon">
                 <i class="ri-shopping-bag-line"></i>
-                <span className="badge">1</span>
+                <span className="badge">2</span>
               </span>
               <span>
                 <motion.img whileTap={{scale: 1.2}} src={userIcon} alt="" />
