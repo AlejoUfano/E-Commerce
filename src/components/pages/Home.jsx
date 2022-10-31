@@ -1,6 +1,6 @@
 
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Helmet from '../organisms/Helmet/Helmet'
 import Services from '../../services/Services.jsx'
 import { Container, Row, Col } from 'reactstrap'
@@ -8,9 +8,16 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import heroImg from '../../assets/images/hero-img.png'
 import '../../styles/home.css'
+import ProductsList from '../../UI/productsList'
+import products from '../../assets/data/products'
 
 const Home = () => {
+  const [data, setData] = useState(products)
   const year = new Date().getFullYear()
+  useEffect(()=>{
+    const filteredProducts = products.filter((item) => item.category === 'Chair') 
+    setData(filteredProducts)
+  },[])
   return (
     <Helmet title={'Home'}>
       <section className="heroSection">
@@ -39,6 +46,18 @@ const Home = () => {
         </Container>
       </section>
       <Services />
+      <section className="trendingProducts">
+        <Container>
+          <Row>
+            <Col lg='12' className='text-center'>
+              <h2 className="sectionTitle">
+                Trending Products
+              </h2>
+            </Col>
+            <ProductsList data={ data }/>
+          </Row>
+        </Container>
+      </section>
     </Helmet>
   )
 }
