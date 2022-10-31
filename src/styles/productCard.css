@@ -1,0 +1,27 @@
+.productItem {
+    cursor: pointer;
+}
+.productInfo h3 a {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-top: 15px;
+}
+.productInfo span {
+    font-size: 0.9rem;
+}
+.productInfo a:hover {
+    color: inherit;    
+}
+.productCardBotton .price {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+.productCardBotton span i {
+    font-size: 1.2rem;
+    padding: 5px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 50px;
+}
