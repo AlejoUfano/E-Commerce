@@ -58,6 +58,17 @@ const Home = () => {
           </Row>
         </Container>
       </section>
+      <section className="bestSales">
+        <Container>
+          <Row>
+            <Col lg='12' className='text-center'>
+              <h2 className="sectionTitle">
+                Best Sales
+              </h2>
+            </Col>
+          </Row>
+        </Container>
+      </section>
     </Helmet>
   )
 }
