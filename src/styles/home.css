@@ -30,3 +30,20 @@
 .heroContent {
     padding-top: 45px;
 }
+.timerCount {
+    background: var(--primary-color);
+    height: 300px;
+}
+.timerCount img {
+    width: 70% !important;
+    height: 70% !important;
+    object-fit: contain;
+}
+.storeButton {
+    background: #fff;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+.storeButton a:hover {
+    color: var(--primary-color);
+}
