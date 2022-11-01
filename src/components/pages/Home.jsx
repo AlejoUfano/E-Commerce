@@ -8,15 +8,20 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import heroImg from '../../assets/images/hero-img.png'
 import '../../styles/home.css'
-import ProductsList from '../../UI/productsList'
+import ProductsList from '../../UI/ProductsList.jsx'
 import products from '../../assets/data/products'
+import counterImg from '../../assets/images/counter-timer-img.png'
+import Clock from '../../UI/Clock.jsx'
 
 const Home = () => {
-  const [data, setData] = useState(products)
+  const [trendingProducts, setTrendingProducts] = useState([])
+  const [bestSalesProducts, setBestSalesProducts] = useState([])
   const year = new Date().getFullYear()
   useEffect(()=>{
-    const filteredProducts = products.filter((item) => item.category === 'Chair') 
-    setData(filteredProducts)
+    const filteredTrendingProducts = products.filter((item) => item.category === 'chair')
+    const filteredBestSalesProducts = products.filter((item) => item.category === 'sofa')  
+    setTrendingProducts(filteredTrendingProducts)
+    setBestSalesProducts(filteredBestSalesProducts)
   },[])
   return (
     <Helmet title={'Home'}>
@@ -54,7 +59,7 @@ const Home = () => {
                 Trending Products
               </h2>
             </Col>
-            <ProductsList data={ data }/>
+            <ProductsList data={ trendingProducts }/>
           </Row>
         </Container>
       </section>
@@ -65,6 +70,28 @@ const Home = () => {
               <h2 className="sectionTitle">
                 Best Sales
               </h2>
+            </Col>
+            <ProductsList data={ bestSalesProducts }/>
+          </Row>
+        </Container>
+      </section>
+      <section className="timerCount">
+        <Container>
+          <Row>
+            <Col lg='6' md='6'>
+              <div className="clockTopContent">
+                <h4 className='text-white fs-6 mb-2'>Limited Offers</h4>
+                <h3 className='text-white fs-5 mb-3'>Quality Armchair</h3>
+              </div>
+              <Clock />
+              <motion.button whileTap={{scale:1.2}} className="buyButton storeButton">
+                <Link to='/shop' style={{textDecoration: 'none'}}>
+                  Visit Store
+                </Link>
+              </motion.button>
+            </Col>
+            <Col lg='6' md='6' className='text-end'>
+              <img src={counterImg} alt="" />
             </Col>
           </Row>
         </Container>
