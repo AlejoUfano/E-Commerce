@@ -13,12 +13,12 @@
 .productInfo a:hover {
     color: inherit;    
 }
-.productCardBotton .price {
+.productCardBottom .price {
     color: var(--primary-color);
     font-size: 1.3rem;
     font-weight: 500;
 }
-.productCardBotton span i {
+.productCardBottom span i {
     font-size: 1.2rem;
     padding: 5px;
     background-color: var(--primary-color);

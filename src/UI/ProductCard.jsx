@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 const ProductCard = ({ item }) => {
   return (
-    <Col lg='3' md='4'>
+    <Col lg='3' md='4' className='mb-2'>
         <div className="productItem">
 
             <div className="productImg">
@@ -15,7 +15,7 @@ const ProductCard = ({ item }) => {
 
             <div className='p-2 productInfo'>
                 <h3 className="productName">
-                    <Link to={`/shop/${item.id}`}>
+                    <Link to={`/shop/${item.id}`} style={{textDecoration: 'none'}}>
                         {item.productName}
                     </Link>
                 </h3>
