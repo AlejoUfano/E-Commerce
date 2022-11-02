@@ -16,12 +16,21 @@ import Clock from '../../UI/Clock.jsx'
 const Home = () => {
   const [trendingProducts, setTrendingProducts] = useState([])
   const [bestSalesProducts, setBestSalesProducts] = useState([])
+  const [mobileProducts, setMobileProducts] = useState([])
+  const [wirelessProducts, setWirelessProducts] = useState([])
+  const [popularProducts, setPopularProducts] = useState([])
   const year = new Date().getFullYear()
   useEffect(()=>{
     const filteredTrendingProducts = products.filter((item) => item.category === 'chair')
-    const filteredBestSalesProducts = products.filter((item) => item.category === 'sofa')  
+    const filteredBestSalesProducts = products.filter((item) => item.category === 'sofa')
+    const filteredMobileProducts = products.filter((item) => item.category === 'mobile')  
+    const filteredWirelessProducts = products.filter((item) => item.category === 'wireless')  
+    const filteredPopularProducts = products.filter((item) => item.category === 'watch')  
     setTrendingProducts(filteredTrendingProducts)
     setBestSalesProducts(filteredBestSalesProducts)
+    setMobileProducts(filteredMobileProducts)
+    setWirelessProducts(filteredWirelessProducts)
+    setPopularProducts(filteredPopularProducts)
   },[])
   return (
     <Helmet title={'Home'}>
@@ -93,6 +102,31 @@ const Home = () => {
             <Col lg='6' md='6' className='text-end'>
               <img src={counterImg} alt="" />
             </Col>
+          </Row>
+        </Container>
+      </section>
+      <section className="newArrivals">
+        <Container>
+          <Row>
+            <Col lg='12' className='text-center mb-5'>
+              <h2 className="sectionTitle">
+                New Arrivals
+              </h2>
+            </Col>
+            <ProductsList data={ mobileProducts }/>
+            <ProductsList data={ wirelessProducts }/>
+          </Row>
+        </Container>
+      </section>
+      <section className="popularCategory">
+        <Container>
+          <Row>
+            <Col lg='12' className='text-center mb-5'>
+              <h2 className="sectionTitle">
+                Popular in category
+              </h2>
+            </Col>
+            <ProductsList data={ popularProducts }/>
           </Row>
         </Container>
       </section>

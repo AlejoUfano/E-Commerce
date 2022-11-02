@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import './header.css'
 import { Container, Row } from 'reactstrap'
 import { motion } from 'framer-motion'
@@ -21,8 +21,22 @@ const navLinks = [
 ]
 
 const Header = () => {
+  const headerRef = useRef(null)
+  const stickyHeaderFunc = () => {
+    window.addEventListener('scroll', ()=>{
+      if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+        headerRef.current.classList.add('stickyHeader')
+      } else {
+        headerRef.current.classList.remove('stickyHeader')
+      }
+    })
+  }
+  useEffect(()=>{
+    stickyHeaderFunc()
+    return ()=> window.removeEventListener('scroll', stickyHeaderFunc)
+  },[])
   return (
-    <header className='header'>
+    <header className='header' ref={headerRef}>
       <Container>
         <Row>
           <div className="navWrapper">
@@ -30,7 +44,6 @@ const Header = () => {
               <img src={logo} alt="logo" />
               <div>
                 <h1>Multimart</h1>
-                {/* <p>Since 1995</p> */}
               </div>
             </div>
             <div className='navigation'>
