@@ -62,21 +62,19 @@
 }
 .badge {
     position: absolute;
-    top: 25%;
-    right: -8%;
-    content: '';
+    top: 20%;
+    right: -40%;
     background-color: var(--primary-color);
     color: #fff;
-    border-radius: 50%;
+    border-radius: 50% !important;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 0.7rem;
-    font-weight: 600;
+    justify-content: center !important;
+    text-align: center !important;
+    font-size: 0.7rem !important;
+    font-weight: 600 !important;
     z-index: 10;
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
 }
 .stickyHeader {
     width: 100%;
