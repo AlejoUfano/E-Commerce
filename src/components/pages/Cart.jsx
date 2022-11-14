@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CommonSection from '../../UI/CommonSection'
 import Helmet from '../organisms/Helmet/Helmet'
 import '../../styles/cart.css'
 import { Container, Row, Col } from 'reactstrap'
-import tdImg from '../../assets/images/arm-chair-01.jpg'
 import { motion } from 'framer-motion'
 import { cartActions } from '../../redux/slices/cartSlice'
 import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 const Cart = () => {
+  const cartItems = useSelector(state=>state.cart.cartItems)
+  const totalAmount = useSelector(state=>state.cart.totalAmount)
+  useEffect(()=>{
+  },[cartItems])
   return (
     <Helmet title='Cart'>
       <CommonSection title='Shopping Cart' />
@@ -16,28 +20,40 @@ const Cart = () => {
         <Container>
           <Row>
             <Col lg='9'>
-              <table className='table bordered'>
-                <thead>
-                  <tr>
-                    <th>Image</th>
-                    <th>Title</th>
-                    <th>Price</th>
-                    <th>Qty</th>
-                    <th>Delete</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                      <td><img src={tdImg} alt="" /></td>
-                      <td>Modern Arm Chair</td>
-                      <td>$299</td>
-                      <td>2u</td>
-                      <td><i class="ri-delete-bin-line"></i></td>
-                    </tr>
-                </tbody>
-              </table>
+              {
+                cartItems.length===0 
+                ? 
+                <h2 className='fs-4 text-center'>No items added to the cart</h2> 
+                :(
+                  <table className='table bordered'>
+                    <thead>
+                      <tr>
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Price</th>
+                        <th>Qty</th>
+                        <th>Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {
+                        cartItems.map((item,index)=>(
+                          <Tr item={item} key={index}/>
+                        ))
+                      }
+                    </tbody>
+                  </table>
+                )
+              }              
             </Col>
-            <Col lg='3 '></Col>
+            <Col lg='3 '>
+              <div>
+                <h6>Subtotal</h6>
+                <span>${totalAmount}</span>
+              </div>
+              <p>Taxes and shipping will be calculated at checkout.</p>
+              <button className="buyButton"><Link to='/shop'>Continue shopping</Link></button>
+            </Col>
           </Row>
         </Container>
       </section>
@@ -45,4 +61,19 @@ const Cart = () => {
   )
 }
 
+const Tr = ({item}) => {
+  const dispatch = useDispatch()
+  const removeProduct = () => {
+    dispatch(cartActions.removeItem(item.id))
+  }
+  return(                       
+  <tr>
+    <td><img src={item.imgUrl} alt=""/></td>
+    <td>{item.productName}</td>
+    <td>{item.price}</td>
+    <td>{item.quantity}</td>
+    <td><motion.i class="ri-delete-bin-line" whileTap={{scale: 1.2}} onClick={removeProduct}></motion.i></td>
+  </tr>
+  ) 
+}
 export default Cart
