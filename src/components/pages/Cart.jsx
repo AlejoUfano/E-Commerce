@@ -48,11 +48,16 @@ const Cart = () => {
             </Col>
             <Col lg='3 '>
               <div>
-                <h6>Subtotal</h6>
-                <span>${totalAmount}</span>
+                <h6 className='d-flex align-items-center justify-content-between'>
+                  Subtotal
+                  <span className='fz-4 fw-bold'>${totalAmount}</span>
+                </h6>                
               </div>
-              <p>Taxes and shipping will be calculated at checkout.</p>
-              <button className="buyButton"><Link to='/shop'>Continue shopping</Link></button>
+              <p className='fs-6 mt-2'>Taxes and shipping will be calculated at checkout.</p>
+              <div>
+                <button className="buyButton"><Link to='/shop' style={{ textDecoration: 'none' }}>Continue shopping</Link></button>
+                <button className="buyButton"><Link to='/checkout' style={{ textDecoration: 'none' }}>Checkout</Link></button>
+              </div>
             </Col>
           </Row>
         </Container>
