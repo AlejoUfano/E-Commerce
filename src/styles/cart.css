@@ -10,3 +10,7 @@ td,
 th {
     color: var(--primary-color);
 }
+.cartButtons {
+    display: flex;
+    flex-direction: column;
+}
