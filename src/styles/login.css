@@ -1,0 +1,17 @@
+.authForm {
+    background: var(--primary-color);
+    padding: 40px;
+    border-radius: 5px;
+}
+.authButton {
+    background: #fff !important;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+.authForm p {
+    margin-top: 30px;
+}
+.authForm p a {
+    color: #fff;
+}
+
