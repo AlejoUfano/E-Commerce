@@ -14,4 +14,8 @@
 .authForm p a {
     color: #fff;
 }
+.authForm input[type= 'file'] {
+    color: #fff;
+    cursor: pointer;
+}
 
