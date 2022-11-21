@@ -10,6 +10,7 @@ import { storage } from '../../firebase.config'
 import { db } from '../../firebase.config'
 import { toast } from 'react-toastify'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
+import { useNavigate } from 'react-router-dom'
 
 const Signup = () => {
   const [username, setUsername] = useState('')
@@ -17,6 +18,7 @@ const Signup = () => {
   const [password, setPassword] = useState('')
   const [file, setFile] = useState(null)
   const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
   const signup = async (e) => {
     e.preventDefault()
@@ -25,7 +27,7 @@ const Signup = () => {
       const user = userCredential.user 
 
       const userCredential = await createUserWithEmailAndPassword(auth,email,password)
-      const storageRef = ref(storage, `images/${Date.now() + username}`)
+      const storageRef = ref(storage, `images/${ Date.now() + username}`)
       const uploadTask = uploadBytesResumable(storageRef, file)        
       uploadTask.on((error)=>{
         toast.error(error.message)
@@ -43,7 +45,11 @@ const Signup = () => {
           })
         })
       })
+      setLoading(false)
+      toast.success('Account created')
+      navigate('/login')
     } catch (error) {
+      setLoading(false)
       toast.error('Somethig went wrong')
     }
   }
@@ -52,7 +58,10 @@ const Signup = () => {
       <section>
         <Container>
           <Row>
-            <Col lg='6' className='m-auto text-center'>
+            {
+              loading 
+              ? <Col lg='12' className='text-center'><h5 className='fw-bold'>Loading....</h5></Col>
+              : <Col lg='6' className='m-auto text-center'>
               <h3 className='fw-bold mb-4'>Signup</h3>
               <Form className='authForm' onSubmit={signup}>
                 <FormGroup className='formGroup'>
@@ -74,6 +83,7 @@ const Signup = () => {
                 <p>Already have an account? <Link to='/login' style={{ textDecoration: 'none' }}>Login</Link></p>
               </Form>
             </Col>
+            }  
           </Row>
         </Container>
       </section>
