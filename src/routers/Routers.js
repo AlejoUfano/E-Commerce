@@ -7,6 +7,7 @@ import Checkout from '../components/pages/Checkout'
 import Signup from '../components/pages/Signup'
 import Login from '../components/pages/Login'
 import ProductDetails from '../components/pages/ProductDetails'
+import ProtectedRoute from './ProtectedRoute'
 
 const Routers = () => {
   return (
@@ -18,7 +19,7 @@ const Routers = () => {
         <Route path='cart' element={<Cart />}/>
         <Route path='signup' element={<Signup />}/>
         <Route path='login' element={<Login />}/>
-        <Route path='checkout' element={<Checkout />}/>
+        <Route path='checkout' element={<ProtectedRoute> <Checkout /> </ProtectedRoute>}/>
     </Routes>
   )
 }
