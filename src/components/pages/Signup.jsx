@@ -24,10 +24,11 @@ const Signup = () => {
     e.preventDefault()
     setLoading(true)
     try {
+      const userCredential = await createUserWithEmailAndPassword(auth,email,password);  
+      
       const user = userCredential.user 
 
-      const userCredential = await createUserWithEmailAndPassword(auth,email,password)
-      const storageRef = ref(storage, `images/${ Date.now() + username}`)
+      const storageRef = ref(storage, `images/${Date.now() + username}`)
       const uploadTask = uploadBytesResumable(storageRef, file)        
       uploadTask.on((error)=>{
         toast.error(error.message)
@@ -41,7 +42,7 @@ const Signup = () => {
             uid: user.uid,
             displayName: username,
             email,
-            photoURL: downloadURL
+            photoURL: downloadURL,
           })
         })
       })
@@ -65,16 +66,13 @@ const Signup = () => {
               <h3 className='fw-bold mb-4'>Signup</h3>
               <Form className='authForm' onSubmit={signup}>
                 <FormGroup className='formGroup'>
-                <input type="text" placeholder='Enter your email'value={username} onChange={e=> setUsername(e.target.value)} />
+                <input type="text" placeholder='Username'value={username} onChange={e=> setUsername(e.target.value)} />
                 </FormGroup>
                 <FormGroup className='formGroup'>
-                <input type="email" placeholder='Username'value={email} onChange={e=> setEmail(e.target.value)} />
+                <input type="email" placeholder='Enter your email'value={email} onChange={e=> setEmail(e.target.value)} />
                 </FormGroup>
                 <FormGroup className='formGroup'>
-                <input type="text" placeholder='Enter your password' value={password} onChange={e=> setPassword(e.target.value)} />
-                </FormGroup>
-                <FormGroup className='formGroup'>
-                <input type="text" placeholder='Enter your password' value={password} onChange={e=> setPassword(e.target.value)} />
+                <input type="password" placeholder='Enter your password' value={password} onChange={e=> setPassword(e.target.value)} />
                 </FormGroup>
                 <FormGroup className='formGroup'>
                 <input type="file" onChange={e=> setFile(e.target.files[0])} />
