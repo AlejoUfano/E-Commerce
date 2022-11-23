@@ -27,7 +27,6 @@ const Signup = () => {
       const userCredential = await createUserWithEmailAndPassword(auth,email,password);  
       
       const user = userCredential.user 
-
       const storageRef = ref(storage, `images/${Date.now() + username}`)
       const uploadTask = uploadBytesResumable(storageRef, file)        
       uploadTask.on((error)=>{
@@ -38,11 +37,13 @@ const Signup = () => {
             displayName: username,
             photoURL: downloadURL,
           })
-          await setDoc(doc(db,'users', user.uid),{
+          await setDoc(doc(db, 'users',  user.uid), {
             uid: user.uid,
             displayName: username,
             email,
             photoURL: downloadURL,
+          }, {
+            merge: true,
           })
         })
       })
