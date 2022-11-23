@@ -6,7 +6,7 @@ import '../../styles/checkout.css'
 import { useSelector } from 'react-redux'
 
 const Checkout = () => {
-  const totalQty = useSelector(state=>state.cart.totalQty)
+  const totalQty = useSelector(state=>state.cart.totalQuantity)
   const totalAmount = useSelector(state=>state.cart.totalAmount)
   return (
     <Helmet title='Checkout'>
@@ -39,8 +39,9 @@ const Checkout = () => {
                   <input type="text" placeholder='Country'/>
                 </FormGroup>
               </Form>
-            </Col>
-              <div className="checkoutCart">
+            </Col>                         
+            <Col lg='4'>
+            <div className="checkoutCart">
                 <h6>Total Qty: <span>{totalQty} items</span></h6>
                 <h6>Subtotal: <span>${totalAmount}</span></h6>
                 <h6>
@@ -52,8 +53,8 @@ const Checkout = () => {
                 </h6>
                 <h4>Total cost: <span>${totalAmount}</span></h4>
                 <button className="buyButton authButton w-100">Place an order</button>
-              </div>              
-            <Col lg='4'></Col>
+              </div>  
+            </Col>
           </Row>
         </Container>
       </section>
