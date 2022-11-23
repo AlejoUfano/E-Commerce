@@ -18,9 +18,7 @@ const ProductDetails = () => {
   const dispatch = useDispatch()
   const [rating, setRating] = useState(null)
   const {id} = useParams()
-  console.log(id)
   const product = products.find(item=>item.id===id)
-  console.log(products);
   const {imgUrl, productName, price, shortDesc, category, avgRating, reviews, description } = product 
   const relatedProducts = products.filter(item=>item.category===category)
   const submitHandler = (e) => {

@@ -28,7 +28,6 @@ const navLinks = [
 
 const Header = () => {
   const { currentUser } = useAuth()
-  console.log(currentUser)
   const totalQuantity = useSelector(state=>state.cart.totalQuantity)
   const headerRef = useRef(null)
   const menuRef = useRef(null)
@@ -61,7 +60,6 @@ const Header = () => {
   const menuToggle = () => menuRef.current.classList.toggle('activeMenu')
   const toggleProfileActions = () => {
     profileActionRef.current.classList.toggle('showProfileActions')
-    console.log('toggled');
   } 
   return (
     <header className='header' ref={headerRef}>
