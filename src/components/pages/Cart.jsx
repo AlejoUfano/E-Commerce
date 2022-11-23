@@ -55,13 +55,15 @@ const Cart = () => {
               </div>
               <p className='fs-6 mt-2'>Taxes and shipping will be calculated at checkout.</p>
               <div className='cartButtons'>
+
+              <button className="buyButton w-100 text-white">
+                  <Link to='/checkout' className='text-white' style={{ textDecoration: 'none' }}>Checkout</Link>
+                </button>
+
                 <button className="buyButton w-100">
                   <Link to='/shop' className='text-white' style={{ textDecoration: 'none' }}>Continue shopping</Link>
                 </button>
-
-                <button className="buyButton w-100 text-white">
-                  <Link to='/checkout' className='text-white' style={{ textDecoration: 'none' }}>Checkout</Link>
-                </button>
+                 
               </div>
             </Col>
           </Row>
