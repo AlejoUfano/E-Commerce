@@ -32,6 +32,9 @@
 .searchBox span {
     color: var(--primary-color);
 }
+.filterCol {
+    width: auto !important;
+}
 @media only screen and (max-width: 768) {
     .filterWidget {
         margin-bottom: 30px;
