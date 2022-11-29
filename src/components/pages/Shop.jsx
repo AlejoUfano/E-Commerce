@@ -60,7 +60,7 @@ const Shop = () => {
       <CommonSection title='Products' />
       <section>
         <Container>
-          <Row>
+          <Row className='filtersRow'>
             <Col lg='3' md='6' className='filterCol'>
               <div className="filterWidget">
                 <select onChange={handleFilter}>
@@ -82,7 +82,7 @@ const Shop = () => {
                 </select>
               </div>
             </Col>
-            <Col lg='6' md='12' className='mt-2'>
+            <Col lg='6' md='12' className='searchCol'>
               <div className="searchBox">
                 <input type="text" placeholder='Search...' onChange={handleSearch} />
                 <span>
