@@ -29,11 +29,19 @@
     outline: none;
     padding: 8px 10px;
 }
+.searchCol {
+    margin-top: 0.4rem !important;
+}
 .searchBox span {
     color: var(--primary-color);
 }
 .filterCol {
     width: auto !important;
+    margin-top: 0.4rem !important;
+}
+.filtersRow {
+    display: flex;
+    justify-content: space-around;
 }
 @media only screen and (max-width: 768) {
     .filterWidget {
