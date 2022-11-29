@@ -1,6 +1,6 @@
 
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import CommonSection from '../../UI/CommonSection'
 import Helmet from '../organisms/Helmet/Helmet'
 import { Container, Row, Col } from 'reactstrap'
@@ -10,6 +10,20 @@ import ProductsList from '../../UI/ProductsList.jsx'
 
 const Shop = () => {
   const [productsData, setProductsData] = useState(products)
+  const [orderFilter, setOrderFilter] = useState(false)
+  const handleOrder = e => {
+    const filterValue = e.target.value
+    if(filterValue === 'ascending') {
+      const filteredProducts = products.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+      setProductsData(filteredProducts)
+      setOrderFilter(!orderFilter)
+    }
+    if(filterValue === 'descending') {
+      const filteredProducts = products.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+      setProductsData(filteredProducts)
+      setOrderFilter(!orderFilter)
+    }
+  }
   const handleFilter = e => {
     const filterValue = e.target.value
     if(filterValue==='sofa') {
@@ -39,13 +53,15 @@ const Shop = () => {
     const searchedProducts = products.filter(item=>item.productName.toLowerCase().includes(searchTerm.toLowerCase()))
     setProductsData(searchedProducts)
   }
+  useEffect(()=>{
+  },[productsData, orderFilter])
   return (
     <Helmet title='Shop'>
       <CommonSection title='Products' />
       <section>
         <Container>
           <Row>
-            <Col lg='3' md='6'>
+            <Col lg='3' md='6' className='filterCol'>
               <div className="filterWidget">
                 <select onChange={handleFilter}>
                   <option>Filter By Category</option>
@@ -57,16 +73,16 @@ const Shop = () => {
                 </select>
               </div>
             </Col>
-            <Col lg='3' md='6' className='text-end'>
+            <Col lg='3' md='6' className='text-end filterCol'>
             <div className="filterWidget">
-                <select>
+                <select onChange={handleOrder}>
                   <option>Sort By</option>
                   <option value="ascending">Ascending</option>
                   <option value="descending">Descending</option>
                 </select>
               </div>
             </Col>
-            <Col lg='6' md='12'>
+            <Col lg='6' md='12' className='mt-2'>
               <div className="searchBox">
                 <input type="text" placeholder='Search...' onChange={handleSearch} />
                 <span>
